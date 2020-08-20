@@ -1,4 +1,4 @@
-#ESP32GithubOTA
+# ESP32GithubOTA
 
 This library makes it possible to use Github as a host for your firmware.
 
