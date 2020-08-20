@@ -4,8 +4,8 @@
 ESP32GithubOTA::ESP32GithubOTA() {}
 ESP32GithubOTA::ESP32GithubOTA(WiFiClientSecure &c, int led_pin)
 {
-    this->client = c;
-    this->led_pin = led_pin;
+    client = c;
+    led_pin = led_pin;
 }
 void ESP32GithubOTA::onStart(githubOTAStartCallback cb)
 {
@@ -107,7 +107,10 @@ String ESP32GithubOTA::updateAvailable(void)
         }
         client.stop();
         if (md5.length() == 32)
+        {
+            Serial.println(md5);
             return md5;
+        }
         else
             return "";
     }
