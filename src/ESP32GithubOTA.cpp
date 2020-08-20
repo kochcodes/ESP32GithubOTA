@@ -44,7 +44,9 @@ String ESP32GithubOTA::getBlobSHA()
         Serial.println("Connection failed!");
     else
     {
-        client.println("GET /repos/" + String(owner) + "/" + String(repository) + "/contents?ref=" + String(branch) + " HTTP/1.0");
+        String url = "/repos/ " + String(owner) + "/" + String(repository) + "/contents?ref=" + String(branch);
+        Serial.println(url);
+        client.println("GET " + url + " HTTP/1.0");
         client.println("Host: api.github.com");
         client.println("User-Agent: ESP32");
         client.println("Accept: application/vnd.github.v3+json");
