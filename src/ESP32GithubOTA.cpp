@@ -44,11 +44,11 @@ String ESP32GithubOTA::getBlobSHA()
         Serial.println("Connection failed!");
     else
     {
-        client.println("GET /repos/kochcodes/ESP32GithubOTA/contents?ref=release HTTP/1.0");
+        client.println("GET /repos/" + String(owner) + "/" + String(repository) + "/contents?ref=" + String(branch) + " HTTP/1.0");
         client.println("Host: api.github.com");
         client.println("User-Agent: ESP32");
         client.println("Accept: application/vnd.github.v3+json");
-        client.println("Authorization: token 8f46bf08a4cdee1bf11bcf019b520cdcea7c2cea");
+        client.println("Authorization: token " + String(token));
         client.println("Connection: Close");
         client.println();
 

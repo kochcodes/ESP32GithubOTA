@@ -23,6 +23,9 @@ public:
     ESP32GithubOTA(WiFiClientSecure &, int);
     bool check();
 
+    void setGithubToken(char *token);
+    void setRepository(char *owner, char *repos, char *branch);
+
     void onStart(githubOTAStartCallback);
     void onEnd(githubOTAEndCallback);
     void onError(githubOTAErrorCallback);
@@ -32,6 +35,11 @@ private:
     WiFiClientSecure client;
     int led_pin;
     const char *host = "api.github.com";
+    char *token;
+    char *owner;
+    char *repository;
+    char *branch;
+
     githubOTAStartCallback _StartCB;
     githubOTAEndCallback _EndCB;
     githubOTAErrorCallback _ErrorCB;
