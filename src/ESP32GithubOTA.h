@@ -23,7 +23,7 @@ public:
     ESP32GithubOTA(WiFiClientSecure &, int);
     bool check();
 
-    void setGithubToken(char *token);
+    void setAccessToken(char *token);
     void setRepository(char *owner, char *repos, char *branch);
 
     void onStart(githubOTAStartCallback);
