@@ -35,10 +35,10 @@ private:
     WiFiClientSecure client;
     int led_pin;
     const char *host = "api.github.com";
-    const char *token;
-    const char *owner;
-    const char *repository;
-    const char *branch;
+    String token;
+    String owner;
+    String repos;
+    String branch;
 
     githubOTAStartCallback _StartCB;
     githubOTAEndCallback _EndCB;

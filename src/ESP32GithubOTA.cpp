@@ -37,20 +37,18 @@ bool ESP32GithubOTA::check()
     else
         Serial.println("Firmeware up to date");
 }
-
 String ESP32GithubOTA::getBlobSHA()
 {
+
     if (!client.connect(host, 443))
         Serial.println("Connection failed!");
     else
     {
-        String url = "/repos/ " + String(owner) + "/" + String(repository) + "/contents?ref=" + String(branch);
-        Serial.println(url);
-        client.println("GET " + url + " HTTP/1.0");
+        client.println("GET /repos/" + owner + "/" + repos + "/contents?ref=" + branch + " HTTP/1.0");
         client.println("Host: api.github.com");
         client.println("User-Agent: ESP32");
         client.println("Accept: application/vnd.github.v3+json");
-        client.println("Authorization: token 8f46bf08a4cdee1bf11bcf019b520cdcea7c2cea";
+        client.println("Authorization: token " + token);
         client.println("Connection: Close");
         client.println();
 
@@ -73,6 +71,7 @@ String ESP32GithubOTA::getBlobSHA()
             }
         }
         client.stop();
+        Serial.println(sha);
         return sha;
     }
     return "";
@@ -83,11 +82,11 @@ String ESP32GithubOTA::updateAvailable(void)
         Serial.println("Connection failed!");
     else
     {
-        client.println("GET /repos/kochcodes/ESP32GithubOTA/contents/info.txt?ref=release HTTP/1.0");
+        client.println("GET /repos/" + owner + "/" + repos + "/contents/info.txt?ref=" + branch + " HTTP/1.0");
         client.println("Host: api.github.com");
         client.println("User-Agent: ESP32");
         client.println("Accept: application/vnd.github.v3.raw");
-        client.println("Authorization: token 8f46bf08a4cdee1bf11bcf019b520cdcea7c2cea");
+        client.println("Authorization: token " + token);
         client.println("Connection: close");
         client.println();
 
@@ -143,11 +142,11 @@ HTTPGithubResult ESP32GithubOTA::runFirmwareUpdate(String &blob)
         Serial.println("Connection failed!");
     else
     {
-        client.println("GET /repos/kochcodes/ESP32GithubOTA/git/blobs/" + blob + "?ref=release HTTP/1.0");
+        client.println("GET /repos/" + owner + "/" + repos + "/git/blobs/" + blob + "?ref=" + branch + " HTTP/1.0");
         client.println("Host: api.github.com");
         client.println("User-Agent: ESP32");
         client.println("Accept: application/vnd.github.v3.raw");
-        client.println("Authorization: token 8f46bf08a4cdee1bf11bcf019b520cdcea7c2cea");
+        client.println("Authorization: token " + token);
         client.println("Connection: Keep-Alive");
         client.println("Keep-Alive: timeout=60, max=1000");
         client.println();
@@ -186,11 +185,11 @@ HTTPGithubResult ESP32GithubOTA::runFirmwareUpdate(String &blob)
 
 void ESP32GithubOTA::setAccessToken(const char *token)
 {
-    token = token;
+    this->token = token;
 }
 void ESP32GithubOTA::setRepository(const char *owner, const char *repos, const char *branch)
 {
-    owner = owner;
-    repos = repos;
-    branch = branch;
+    this->owner = owner;
+    this->repos = repos;
+    this->branch = branch;
 }
