@@ -40,7 +40,7 @@ bool ESP32GithubOTA::check()
 
 String ESP32GithubOTA::getBlobSHA()
 {
-    if (!client.connect("api.github.com", 443))
+    if (!client.connect(host, 443))
         Serial.println("Connection failed!");
     else
     {
@@ -50,7 +50,7 @@ String ESP32GithubOTA::getBlobSHA()
         client.println("Host: api.github.com");
         client.println("User-Agent: ESP32");
         client.println("Accept: application/vnd.github.v3+json");
-        client.println("Authorization: token " + String(token));
+        client.println("Authorization: token 8f46bf08a4cdee1bf11bcf019b520cdcea7c2cea";
         client.println("Connection: Close");
         client.println();
 
