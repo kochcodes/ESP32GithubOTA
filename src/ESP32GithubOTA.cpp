@@ -2,10 +2,9 @@
 #include <Update.h>
 
 ESP32GithubOTA::ESP32GithubOTA() {}
-ESP32GithubOTA::ESP32GithubOTA(WiFiClientSecure &c, int led_pin)
+ESP32GithubOTA::ESP32GithubOTA(WiFiClientSecure &c)
 {
     client = c;
-    led_pin = led_pin;
 }
 void ESP32GithubOTA::onStart(githubOTAStartCallback cb)
 {

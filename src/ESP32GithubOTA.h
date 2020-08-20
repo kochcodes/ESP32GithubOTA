@@ -20,7 +20,7 @@ class ESP32GithubOTA
 {
 public:
     ESP32GithubOTA();
-    ESP32GithubOTA(WiFiClientSecure &, int);
+    ESP32GithubOTA(WiFiClientSecure &);
     bool check();
 
     void setAccessToken(const char *token);
@@ -33,7 +33,6 @@ public:
 
 private:
     WiFiClientSecure client;
-    int led_pin;
     const char *host = "api.github.com";
     String token;
     String owner;
