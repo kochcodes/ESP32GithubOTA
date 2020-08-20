@@ -23,8 +23,8 @@ public:
     ESP32GithubOTA(WiFiClientSecure &, int);
     bool check();
 
-    void setAccessToken(String &token);
-    void setRepository(String &owner, String &repos, String &branch);
+    void setAccessToken(String token);
+    void setRepository(String owner, String repos, String branch);
 
     void onStart(githubOTAStartCallback);
     void onEnd(githubOTAEndCallback);
