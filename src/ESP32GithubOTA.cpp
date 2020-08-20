@@ -179,11 +179,11 @@ HTTPGithubResult ESP32GithubOTA::runFirmwareUpdate(String &blob)
     return ret;
 }
 
-void setAccessToken(char *token)
+void setAccessToken(String &token)
 {
     token = token;
 }
-void setRepository(char *owner, char *repos, char *branch)
+void setRepository(String &owner, String &repos, String &branch)
 {
     owner = owner;
     repos = repos;
