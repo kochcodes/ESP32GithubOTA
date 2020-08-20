@@ -40,7 +40,7 @@ void setup()
     updater = ESP32GithubOTA(client, 0);
 
     //displayInit();
-    WiFi.begin("FRITZ!Box 7582 DC", "22846741252367431943");
+    WiFi.begin("NO ONE CARES", "NO ONE CARES");
     while (WiFi.status() != WL_CONNECTED)
     {
         delay(1000);
