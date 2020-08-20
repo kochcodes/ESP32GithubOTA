@@ -1,7 +1,7 @@
 
 #include <WiFi.h>
 #include <HTTPClient.h>
-#include <ESP32GithubOTA.h>
+#include <includes/ESP32GithubOTA.h>
 
 WiFiClientSecure client;
 ESP32GithubOTA updater;
